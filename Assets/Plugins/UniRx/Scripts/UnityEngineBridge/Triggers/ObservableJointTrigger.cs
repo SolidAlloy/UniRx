@@ -20,7 +20,7 @@ namespace UniRx.Triggers
             return onJointBreak ?? (onJointBreak = new Subject<float>());
         }
 
-
+#UNIRX_PHYSICS2D_SUPPORT
         Subject<Joint2D> onJointBreak2D;
 
         void OnJointBreak2D(Joint2D brokenJoint)
@@ -32,7 +32,7 @@ namespace UniRx.Triggers
         {
             return onJointBreak2D ?? (onJointBreak2D = new Subject<Joint2D>());
         }
-
+#endif
 
         protected override void RaiseOnCompletedOnDestroy()
         {
@@ -40,10 +40,12 @@ namespace UniRx.Triggers
             {
                 onJointBreak.OnCompleted();
             }
+#UNIRX_PHYSICS2D_SUPPORT
             if (onJointBreak2D != null)
             {
                 onJointBreak2D.OnCompleted();
             }
+#endif
         }
     }
 }
